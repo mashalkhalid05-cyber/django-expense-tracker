@@ -84,7 +84,6 @@ http://127.0.0.1:8000/
 - Add Expense
    <img width="1580" height="915" alt="image" src="https://github.com/user-attachments/assets/f8f59046-dc72-45da-b969-26ba4b38d90b" />
 
-  <img width="1698" height="662" alt="image" src="https://github.com/user-attachments/assets/0a685c30-cc78-4da2-a5aa-388b3099625a" />
 
 - Categories
    <img width="1698" height="662" alt="image" src="https://github.com/user-attachments/assets/0a685c30-cc78-4da2-a5aa-388b3099625a" />
