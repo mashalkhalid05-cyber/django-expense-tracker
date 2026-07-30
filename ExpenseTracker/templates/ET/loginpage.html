@@ -4,23 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Login Page</h1>
-    
-    {% if error %}
-    <p style="color: red;">{{ error }}</p>
-    {% endif %}
 
-    <form method="POST">
-        {% csrf_token %}
-        <input type="text" name="username" placeholder="Username" required><br><br>
-        <input type="password" name="password" placeholder="Password" required><br><br>
-        <button type="submit">Login</button>
-    </form>
+<body class="bg-light">
 
-    <p>Don't have an account? <a href="{% url 'registerpage' %}">Registeration</a></p>
+<div class="container vh-100 d-flex justify-content-center align-items-center">
 
+    <div class="card shadow-lg p-4" style="width:400px; border-radius:15px;">
+
+        <h2 class="text-center mb-4">🔐 Login</h2>
+
+        {% if error %}
+        <div class="alert alert-danger">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <input type="text"
+                       class="form-control"
+                       name="username"
+                       placeholder="Username"
+                       required>
+            </div>
+
+            <div class="mb-3">
+                <input type="password"
+                       class="form-control"
+                       name="password"
+                       placeholder="Password"
+                       required>
+            </div>
+
+            <button class="btn btn-primary w-100">
+                Login
+            </button>
+
+        </form>
+
+        <div class="text-center mt-3">
+
+            Don't have an account?
+
+            <a href="{% url 'registerpage' %}">
+                Register
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>

@@ -3,21 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registeration</title>
+    <title>Register</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
-<body>
-    
-    {% if error %}
-    <p style="color: red;">{{ error }}</p>
-    {% endif %}
 
-    <form method="POST">
-        {% csrf_token %}
-        <input type="text" name="username" placeholder="Username" required><br><br>
-        <input type="password" name="password" placeholder="Password" required><br><br>
-        <button type="submit">Register</button>
-    </form>
+<body class="bg-light">
 
-    <p>Already have an account? <a href="{% url 'loginpage' %}">Login Page</a></p>
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+
+<div class="card shadow-lg p-4" style="width:400px; border-radius:15px;">
+
+<h2 class="text-center mb-4">📝 Register</h2>
+
+{% if error %}
+<div class="alert alert-danger">
+{{ error }}
+</div>
+{% endif %}
+
+<form method="POST">
+
+{% csrf_token %}
+
+<div class="mb-3">
+<input
+type="text"
+class="form-control"
+name="username"
+placeholder="Username"
+required>
+</div>
+
+<div class="mb-3">
+<input
+type="password"
+class="form-control"
+name="password"
+placeholder="Password"
+required>
+</div>
+
+<button class="btn btn-success w-100">
+Register
+</button>
+
+</form>
+
+<div class="text-center mt-3">
+
+Already have an account?
+
+<a href="{% url 'loginpage' %}">
+
+Login
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
 </body>
 </html>
