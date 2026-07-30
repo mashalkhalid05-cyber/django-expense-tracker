@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold"
+           href="{% url 'dashboard' %}">
+            Expense Tracker
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse"
+             id="navbarNav">
+
+            <ul class="navbar-nav me-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{% url 'dashboard' %}">
+                        Dashboard
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{% url 'category_list' %}">
+                        Categories
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{% url 'view_expense' %}">
+                        Expenses
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{% url 'budget_list' %}">
+                        Budget
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{% url 'expense_summary' %}">
+                        Summary
+                    </a>
+                </li>
+
+            </ul>
+
+            <span class="navbar-text text-white me-3">
+
+                Welcome, {{ request.user.username }}
+
+            </span>
+
+            <a href="{% url 'logout' %}"
+               class="btn btn-outline-light">
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>

@@ -1,0 +1,66 @@
+{% extends 'ET/Base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h2 class="page-title">Add Expense</h2><br>
+
+    <div class="form-card">
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Category Dropdown -->
+        <div class="container">
+            <label>Category</label>
+            <select name="category" class="form-control" required>
+                <option value="">Select Category</option>
+
+                {% for category in categories %}
+                <option value="{{category.id}}"
+                {% if request.GET.category == category.id|stringformat:"s" %}selected{% endif %}>{{category.name}}</option>
+
+                {% endfor %}
+
+            </select>
+        </div>
+
+        <!-- Amount --> 
+         <div class="class">
+            <label>Amount</label>
+            <input type="number" 
+                    name="amount"  
+                    class="form-control"  
+                    placeholder="Enter amount" 
+                    required>
+
+         </div>
+
+        <!-- Date -->
+         <div class="class">
+            <label>Date</label>
+            <input type="date" name="date"  class="form-control"  required>
+         </div>
+
+        <!-- Description -->
+         <div class="class">
+            <label>Description</label>
+            <textarea name="description" class="form-control" row="4"  placeholder="Enter description"></textarea>
+          
+        </div>
+
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn-btn-success">
+            Save Expense
+        </button>
+        <br>
+        <a href="{% url 'view_expense' %}" class="btn btn-secondary">
+            Cancel
+        </a>
+
+    </form>
+    </div>
+
+</div>
+
+{% endblock %}

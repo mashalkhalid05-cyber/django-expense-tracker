@@ -1,0 +1,20 @@
+{% extends 'ET/Base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <h3 class="page-title">Add new category</h3>
+     
+    <div class="form-card">
+    <form method="POST">
+        {% csrf_token  %}
+        <input type="text" name="name" placeholder="Category Name">
+        <button type="submit">Save</button>
+    </form>
+    </div>
+    
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends 'ET/Base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="page-title">My Expenses</h2>
+
+    <a href="{% url 'create_expense' %}" class="btn btn-success">
+        Add Expense
+    </a>
+
+    <br></br>
+
+    <form method="GET" action="{% url 'view_expense' %}">
+
+        <input
+            type="text"
+            name="search"
+            value="{{ request.GET.search }}"
+            class="form-control"
+            placeholder="Search Expense">
+
+        <br></br>
+
+        <select name="category" class="form-control">
+
+            <option value="">All Categories</option>
+
+            {% for category in categories %}
+                <option value="{{ category.id }}"
+                    {% if request.GET.category == category.id|stringformat:"s" %}selected{% endif %}>
+                    {{ category.name }}
+                </option>
+            {% endfor %}
+
+        </select>
+
+        <br>
+
+        <button class="btn btn-primary">
+            Search
+        </button>
+
+        <br></br>
+
+        <!-- From Date -->
+        <label>From Date</label>
+        <input type="date" name="from_date" class="form-control" value="{{ request.GET.from_date }}"
+        >
+    
+        <br></br>
+    
+        <!-- To Date -->
+        <label>To Date</label>
+        <input type="date" name="to_date" class="form-control" 
+        value="{{ request.GET.to_date }}"
+        >
+    
+        <br></br>
+    
+        <button type="submit" class="btn btn-primary">
+            Filter
+        </button>
+
+    </form>
+
+    <br>
+        <a href="{% url 'create_expense' %}">Add Expense</a>
+
+        <br></br>
+
+
+    {% if expenses %}
+        <table class="table table-hover align-middle">
+
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>User</th>
+                    <th>Category</th>
+                    <th>Expense Amount</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for expense in expenses %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ expense.user }}</td>
+                    <td>{{ expense.category.name }}</td>
+                    <td>{{ expense.amount }}</td>
+                    <td>{{ expense.description }}</td>
+                    <td>{{ expense.date }}</td>
+                    <td>
+                        &nbsp;&nbsp;&nbsp;
+
+                        <a href="{% url 'edit_expense' expense.id %}">Edit</a>
+                        &nbsp;&nbsp;&nbsp;
+
+                        <a href="{% url 'delete_expense' expense.id %}">Delete</a>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+
+        <div class="alert alert-info mt-3">
+            No Expenses found.
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

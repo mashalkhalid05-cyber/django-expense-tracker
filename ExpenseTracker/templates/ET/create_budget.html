@@ -1,0 +1,111 @@
+{% extends 'ET/Base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h2 class="page-title">Add Budget</h2><br>
+
+    <div class="form-card">
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Category Dropdown -->
+        <div class="mb-3">
+
+            <label>Category</label>
+
+            <select name="category" class="form-control" required>
+                <option value="">Select Category</option>
+
+                {% for category in categories %}
+                <option value="{{ category.id }}">
+                    {{ category.name }}
+                </option>
+                {% endfor %}
+
+            </select>
+
+        </div>
+        
+        <!-- Budget Amount --> 
+         <div class="mb-3">
+            <label> Budget Amount</label>
+            <input type="number" 
+                    name="amount"  
+                    class="form-control"  
+                    placeholder="Enter amount" 
+                    required>
+
+         </div>
+
+        <!-- Month -->
+         <div class="mb-3">
+            <label>Month</label>
+            <input type="number" name="month"  min="1" max="12"  class="form-control"  required>
+         </div>
+
+        <!-- Year -->
+         <div class="mb-3">
+            <label>Year</label>
+            <input type ="number" name="year" min="2010" max="2100" class="form-control" required>
+          
+        </div>
+
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-success">
+            Save Budget
+        </button>
+        <br></br>
+        <a href="{% url 'budget_list' %}" class="btn btn-secondary">
+            Cancel
+        </a>
+
+    </form>
+    </div>
+
+    <hr>
+
+    <h3>My Budgets</h3>
+
+    {% if budgets %}
+    <table class="table table-hover align-middle">
+
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Category</th>
+                <th>Budget</th>
+                <th>Month</th>
+                <th>Year</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for budget in budgets %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ budget.category.name }}</td>
+                <td>{{ budget.amount }}</td>
+                <td>{{ budget.month }}</td>
+                <td>{{ budget.year }}</td>
+                <td>
+                    <a href="{% url 'edit_budget' budget.id %}">Edit</a>
+                    &nbsp;&nbsp;
+                    <a href="{% url 'delete_budget' budget.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+    <div class="alert alert-info">
+        No budgets found.
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

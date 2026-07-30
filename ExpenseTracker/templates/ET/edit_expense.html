@@ -1,0 +1,70 @@
+{% extends 'ET/Base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h2 class="page-title">Update Expense</h2>
+
+    <div class="form-card">
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Category Dropdown -->
+        <div class="mb-3">
+            <label>Category</label>
+            <select name="category" class="form-control" required>
+                <option value="">Select Category</option>
+
+                {% for category in categories %}
+                <option value="{{category.id}}"
+                    {% if category.id == expense.category.id %}selected{% endif %}>
+                    {{category.name}}
+                </option>
+
+                {% endfor %}
+
+            </select>
+        </div>
+
+        <!-- Amount --> 
+         <div class="mb-3">
+            <label>Amount</label>
+            <input type="number" 
+                    name="amount"  
+                    value="{{expense.amount}}"
+                    class="form-control"  
+                    placeholder="Enter amount" 
+                    required>
+
+         </div>
+
+        <!-- Date -->
+         <div class="mb-3">
+            <label>Date</label>
+            <input type="date" name="date"  
+            value="{{ expense.date|date:'Y-m-d' }}" class="form-control"  required>
+         </div>
+
+        <!-- Description -->
+         <div class="mb-3">
+            <label>Description</label>
+            <textarea name="description"             
+            class="form-control" rows="4">{{expense.description}}</textarea>
+          
+        </div>
+
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-success">
+            Update Expense
+        </button>
+
+        <a href="{% url 'view_expense' %}" class="btn btn-secondary">
+            Cancel
+        </a>
+
+    </form>
+    </div>
+</div>
+
+{% endblock %}

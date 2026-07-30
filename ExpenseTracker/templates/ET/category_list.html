@@ -1,0 +1,54 @@
+{% extends 'ET/Base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="page-title">My Categories</h2>
+    <a href="{% url 'create_category' %}">Add Category</a>
+
+
+    {% if categories %}
+        <table class="table table-hover align-middle">
+
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Category Name</th>
+                    <th>Created At</th>
+                    <th> Action</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for category in categories %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ category.name }}</td>
+                    <td>{{ category.created_at }}</td>
+                    <br>
+                    <td>
+                        &nbsp;&nbsp;&nbsp;
+
+                        <a href="{% url 'edit_category' category.id %}">Edit</a>
+                        &nbsp;&nbsp;&nbsp;
+
+                        <a href="{% url 'delete_category' category.id %}">Delete</a>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+
+        <div class="alert alert-info mt-3">
+            No categories found.
+        </div>
+
+    {% endif %}
+
+</div>
+{% endblock %}

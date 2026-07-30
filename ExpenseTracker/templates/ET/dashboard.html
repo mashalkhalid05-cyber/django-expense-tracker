@@ -1,0 +1,139 @@
+{% extends 'ET/Base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="fw-bold mb-4">Dashboard</h2>
+
+    <!-- Statistics Cards -->
+    <div class="row">
+
+        <!-- Total Categories -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow border-0 rounded-4">
+                <div class="card-body text-center py-5">
+                    <h5 class="text-muted mb-3">
+                        <i class="bi bi-tags-fill text-primary"></i>
+                        Total Categories
+                    </h5>
+                    <h1 class="fw-bold text-primary">{{ total_categories }}</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Expenses -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow border-0 rounded-4">
+                <div class="card-body text-center py-5">
+                    <h5 class="text-muted mb-3">
+                        <i class="bi bi-wallet2 text-success"></i>
+                        Total Expenses
+                    </h5>
+                    <h1 class="fw-bold text-success">
+                        Rs. {{ total_expenses }}
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- Today's Expenses -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow border-0 rounded-4">
+                <div class="card-body text-center py-5">
+                    <h5 class="text-muted mb-3">
+                        <i class="bi bi-calendar-day text-warning"></i>
+                        Today's Expenses
+                    </h5>
+                    <h1 class="fw-bold text-warning">
+                        Rs. {{ today_expenses }}
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- Monthly Expenses -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow border-0 rounded-4">
+                <div class="card-body text-center py-5">
+                    <h5 class="text-muted mb-3">
+                        <i class="bi bi-bar-chart-fill text-danger"></i>
+                        Monthly Expenses
+                    </h5>
+                    <h1 class="fw-bold text-danger">
+                        Rs. {{ monthly_expenses }}
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Recent Expenses -->
+    <div class="card shadow border-0 rounded-4">
+
+        <div class="card-header bg-dark text-white py-3">
+            <h4 class="mb-0">Recent Expenses</h4>
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-hover table-striped align-middle">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for expense in recent_expenses %}
+
+                    <tr>
+                        <td>{{ expense.category.name }}</td>
+                        <td>Rs. {{ expense.amount }}</td>
+                        <td>{{ expense.date }}</td>
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+                        <td colspan="3" class="text-center py-5">
+
+                            <div class="text-muted">
+
+                                <i class="bi bi-receipt fs-1"></i>
+
+                                <h5 class="mt-3">
+                                    No Expenses Yet
+                                </h5>
+
+                                <p class="mb-3">
+                                    Start tracking your expenses by adding your first expense.
+                                </p>
+
+                                <a href="{% url 'create_expense' %}" class="btn btn-primary">
+                                    Add Expense
+                                </a>
+
+                            </div>
+
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

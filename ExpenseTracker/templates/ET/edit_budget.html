@@ -1,0 +1,84 @@
+{% extends 'ET/Base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="page-title">Edit Budget</h2>
+
+    <div class="form-card">
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Category -->
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+
+            <select name="category" class="form-control" required>
+
+                {% for category in categories %}
+
+                <option value="{{ category.id }}"
+                    {% if budget.category.id == category.id %}selected{% endif %}>
+                    {{ category.name }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+        </div>
+
+        <!-- Budget Amount -->
+        <div class="mb-3">
+            <label class="form-label">Budget Amount</label>
+
+            <input
+                type="number"
+                name="amount"
+                class="form-control"
+                value="{{ budget.amount }}"
+                required>
+        </div>
+
+        <!-- Month -->
+        <div class="mb-3">
+            <label class="form-label">Month</label>
+
+            <input
+                type="number"
+                name="month"
+                min="1"
+                max="12"
+                class="form-control"
+                value="{{ budget.month }}"
+                required>
+        </div>
+
+        <!-- Year -->
+        <div class="mb-3">
+            <label class="form-label">Year</label>
+
+            <input
+                type="number"
+                name="year"
+                min="2010"
+                max="2100"
+                class="form-control"
+                value="{{ budget.year }}"
+                required>
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            Update Budget
+        </button>
+
+        <a href="{% url 'budget_list' %}" class="btn btn-secondary">
+            Cancel
+        </a>
+
+    </form>
+    </div>
+
+</div>
+
+{% endblock %}
