@@ -1,4 +1,4 @@
-<img width="778" height="680" alt="image" src="https://github.com/user-attachments/assets/4bbba025-abdb-419c-94b6-2ef6588700eb" /># 💰 Django Expense Tracker
+# 💰 Django Expense Tracker
 
 A modern web-based Expense Tracker built with **Django** that helps users efficiently manage their daily expenses. The application provides secure user authentication, expense categorization, search functionality, and a clean responsive interface for tracking personal finances.
 
@@ -75,16 +75,20 @@ http://127.0.0.1:8000/
 > Add screenshots of the following pages:
 
 - Login Page
-  <img width="1317" height="872" alt="image" src="https://github.com/user-attachments/assets/d2339a9a-e1dd-4b5d-a7f1-ae7331032fee" />
+- <img width="778" height="680" alt="image" src="https://github.com/user-attachments/assets/4bbba025-abdb-419c-94b6-2ef6588700eb" />
   
 - Dashboard
-  <img width="1580" height="915" alt="image" src="https://github.com/user-attachments/assets/f8f59046-dc72-45da-b969-26ba4b38d90b" />
+-   <img width="1317" height="872" alt="image" src="https://github.com/user-attachments/assets/d2339a9a-e1dd-4b5d-a7f1-ae7331032fee" />
+
   
 - Add Expense
+   <img width="1580" height="915" alt="image" src="https://github.com/user-attachments/assets/f8f59046-dc72-45da-b969-26ba4b38d90b" />
+
   <img width="1698" height="662" alt="image" src="https://github.com/user-attachments/assets/0a685c30-cc78-4da2-a5aa-388b3099625a" />
 
 - Categories
-   ![Uploading image.png…]()
+   <img width="1698" height="662" alt="image" src="https://github.com/user-attachments/assets/0a685c30-cc78-4da2-a5aa-388b3099625a" />
+
 
 ---
 
